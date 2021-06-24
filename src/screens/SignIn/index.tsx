@@ -1,44 +1,48 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { 
-    View, 
-    Text, 
-    Image,
-    StatusBar
+  View, 
+  Text, 
+  Image  
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-import { ButtonIcon } from '../../components/Buttonicon';
-import IllustrationImg from '../../assets/illustration.png'
-import {styles} from './styles'
+import IllustrationImg from '../../assets/illustration.png';
+import { styles } from './styles';
+
+import { ButtonIcon } from '../../components/ButtonIcon';
 
 export function SignIn(){
-    return(
-        <View style= {styles.container}>
-            <StatusBar
-                barStyle="light-content"
-                backgroundColor='transparent'
-                translucent
-            />
-            <Image source={IllustrationImg} 
-               style={styles.image} 
-               resizeMode='stretch'
-            />
+  const navigation = useNavigation();
 
-            <View style={styles.content}>
-                <Text style={styles.title}>
-                    Organize {`\n`}suas jogatinas{`\n`} facilmente
-                </Text>
+  function handleSignIn() {
+    navigation.navigate('Home');
+  }
 
-                <Text style={styles.subtitle}>
-                    Crie grupos para jogar seus games {`\n`}
-                    favoritos com seus amigos
-                </Text>
+  return(
+    <View style={styles.container}>     
+      <Image 
+        source={IllustrationImg} 
+        style={styles.image} 
+        resizeMode="stretch"
+      />
 
-                <ButtonIcon 
-                    title='Entrar com Discord'
-                    activeOpacity={0.7}
-                />
+      <View style={styles.content}>
+        <Text style={styles.title}>
+          Conecte-se {'\n'}
+          e organize suas {'\n'} 
+          jogatinas
+        </Text>
 
-            </View>    
-        </View>
-    );
+        <Text style={styles.subtitle}>
+          Crie grupos para jogar seus games {'\n'} 
+          favoritos com seus amigos
+        </Text>
+
+        <ButtonIcon 
+          title="Entrar com Discord"
+          onPress={handleSignIn}
+        />                               
+      </View>
+    </View>
+  );
 }
